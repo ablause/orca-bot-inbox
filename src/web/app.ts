@@ -615,7 +615,7 @@ function Row({
     >
       <${Avatar} name=${item.bot} src=${avatar} size=${28} />
       <span class="text">
-        <span class=${`title ${expanded ? '' : 'clamp2'}`}
+        <span class=${`title ${expanded ? '' : 'clamp1'}`}
           >${fresh ? html`<span class="fresh" title=${strings.newSince}><span class="visually-hidden">${strings.newPrefix}</span></span>` : null}<span
             class="number tabular"
             >${item.number}</span
