@@ -3,13 +3,25 @@
   "id": "bot-inbox",
   "name": "Bot Inbox",
   "version": "0.1.0",
-  "description": "Every open item of every Orca bot on this computer in one sidebar panel, what needs you first.",
+  "description": "Every item your Orca bots wait on you for, in one sidebar panel, what needs you first. Answer a bot's question from the panel, snooze an item until tomorrow or next week, see its pull requests, and count what needs you in the status bar.",
   "author": {
     "name": "ablause",
     "url": "https://github.com/ablause"
   },
   "repository": "https://github.com/ablause/orca-bot-inbox",
   "license": "MIT",
+  "icon": "assets/icon.png",
+  "cover": {
+    "path": "assets/cover.png",
+    "alt": "Four bot chats struck through down to One inbox, beside the panel showing a release question with its proposed replies"
+  },
+  "screenshots": [
+    {
+      "path": "assets/screenshot-answer.png",
+      "caption": "Answer a bot from the panel, or snooze the item",
+      "alt": "An unfolded item: the bot's question, three proposed replies with the recommended one marked, a field for your own answer, Send answer, Open chat and Snooze"
+    }
+  ],
   "engines": {
     "orca": ">=1.4.248"
   },
@@ -53,8 +65,16 @@
         "description": "Language of the panel, the notifications and the answers sent to bots. Auto follows the system language.",
         "type": "string",
         "default": "auto",
-        "enum": ["auto", "en", "fr"],
-        "enumLabels": ["Auto (system language)", "English", "Français"]
+        "enum": [
+          "auto",
+          "en",
+          "fr"
+        ],
+        "enumLabels": [
+          "Auto (system language)",
+          "English",
+          "Français"
+        ]
       }
     ]
   },

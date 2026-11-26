@@ -1,49 +1,68 @@
-# Bot Inbox for Orca
+# Bot Inbox
 
-Every open item of every Orca bot on this computer in one sidebar panel, so what waits on you is in one place instead of in each bot's chat.
+Every item your [Orca](https://orca.dev) bots wait on you for, in one panel of the right sidebar, instead of one chat per bot. Answer a bot's question from the panel, snooze what can wait, and see the pull requests each item links to.
 
-The panel speaks English or French, as the **Language** setting says (Settings, Plugins, Bot Inbox): **Auto**, the default, follows the system language, and **English** or **Français** picks one whatever the system says: its labels, dates, deadlines, notifications, status bar tooltip and the message sent to a bot all follow. The manifest's own names (the panel title **Bot Inbox**, the command **Bot Inbox: open**) stay in English, since Orca manifests cannot be localised.
+![Bot Inbox: four bot chats struck through down to One inbox, beside the panel showing a release question with its proposed replies](assets/cover.png)
 
-## The panel
+It reads the bots of the Orca on this computer through the `orca` CLI, keeps reading them while Orca runs, and counts what needs you in the status bar.
 
-**Bot Inbox** reads like Linear's inbox, with the bots drawn as Orca's Bots list draws them. It opens on how many items need you, at how many bots, and how long the oldest has waited, with the count of items you have not opened yet. Under it, a strip of the bots' mascot tiles, each with an amber count of what needs you, filters the list by bot. Then come the items grouped by status, each group behind a status ring and its count: **Needs you** and **In progress** open, **Waiting** and **Planned** folded. A group shows six rows (ten for **Needs you**), then **Show N more**.
+## What you get
 
-Within a group, an item with a deadline comes first, the nearest first, then the oldest. A deadline is a date still to come (`27/11`, `2026-12-01`, `1er décembre`, `Dec 1`, `December 1st`), a date that a word such as `before`, `by`, `due`, `no later than`, `until`, `avant`, `au plus tard`, `d'ici` or `pour` announces, or a relative word (`tomorrow`, `Friday`, `demain`, `vendredi`) on an item raised in the last two days. Bots write in either language, so both are read whatever the panel speaks; a numeric date is always day first (`12/01` is the 12th of January). A past date on its own is an event ("the outage of Nov 20") and is not one. The row shows what it found in a chip (`Dec 1`, `Friday`), coloured only when an announced deadline is past (`Overdue since Nov 20`).
+- **What needs you, first.** The panel opens on how many items need you, at how many bots, and how long the oldest has waited. Items are grouped by status: **Needs you** and **In progress** open, **Waiting**, **Planned** and **Snoozed** folded. Within a group, an item with a deadline comes first, the nearest first, then the oldest. A strip of the bots' mascots filters the list by bot.
+- **One row, two lines.** Each row shows the bot's mascot, the item's number and title, the question the bot asked or what it waits on, the bot's name, the age, and one chip: an overdue deadline, then failing checks on a linked pull request, then a deadline, then the pull request's state. A dot marks an item that needs you and that you have not opened yet.
+- **Answer from the panel.** An unfolded item shows the decision first: each question the bot asks, its proposed replies with the recommended one marked, a field for your own answer, and **Send answer**, which posts the answer to the bot in the item's chat. The explanation, the description and the history follow, folded when long. **Open chat** shows the bot's workspace in Orca.
+- **Triage from the row.** On hover or keyboard focus, a row that needs you offers the recommended reply in one press when the bot asks a single question, with four seconds to undo, and a clock that snoozes it until tomorrow.
+- **Snooze.** Set an item aside until tomorrow, next Monday or a week out, each at 9 AM. It leaves its group and the count, and comes back on its day with a notification.
+- **Status bar and notifications.** A status bar item counts the items that need you, amber when there is one, and opens the panel. A desktop notification names each item that newly needs you.
+- **Keyboard.** `J` and `K` move between items, `Enter` sends the recommended reply, the arrows unfold and fold, `R` snoozes until tomorrow, `C` opens the bot's chat, `?` lists the shortcuts.
+- **Linked pull requests.** The pull requests a bot linked to an item show with the state Orca last checked (checks failing, running or passed, draft, merged), each opening on GitHub.
+- **English or French.** The **Language** setting (Settings, Plugins, Bot Inbox) follows the system language by default. Deadlines are read in both languages, whatever the panel speaks.
 
-Each row shows the bot's mascot, the item's number and title, the question the bot asked or what it waits on, and the bot's name, with the age (a date past a week) at the right and one chip under it, so a row stays two lines high: an overdue deadline first, then failing checks on a linked pull request, then a deadline, then the pull request's state. Its tooltip names both. A dot marks an item that needs you and that you have not opened, answered or snoozed since it asked.
+![An unfolded item: the bot's question, three proposed replies with the recommended one marked, Send answer, Open chat and Snooze](assets/screenshot-answer.png)
 
-The worker keeps reading the bots while Orca runs, every 45 seconds and once an agent's status settles, and the panel redraws when what it shows changed. A status bar item counts the items that need you, amber when there is one, and opens the panel; a desktop notification names each item that newly needs you, one per item or one summary for several, never on the first read.
+## Install
 
-A press on an item unfolds it in place, decision first: its state in one line, each question the bot asks (up to five) with the replies it offers and the recommended one marked, a field for your own answer, and **Send**, which mails the answer to the bot in the item's chat. The item then moves to **Waiting** until the bot reads it. The text that explains the question follows on three lines, then the description as Markdown at a reading measure, folded under **Details** when long or when the explanation already says it, and the history, folded, one event per line, without the comment already shown. **Open chat** shows that bot's workspace in Orca.
+Needs Orca 1.4.248 or newer, with at least one bot.
 
-A row that needs you shows a bar on hover or keyboard focus: one press sends the recommended reply when the bot asks a single question, with four seconds to **Undo**, and the clock snoozes it until tomorrow. **Snooze** sets an item aside until tomorrow, the next Monday or a week out, each at 9 AM: it leaves its group and the count for a folded **Snoozed** group, and comes back on its day with a notification. **Bring back** returns it at once. An item set aside in Orca itself shows there too, until its date.
+In Orca, open Settings, then Plugins, search for **Bot Inbox** and install it. Or from a terminal:
 
-The keyboard walks the rows: `J` and `K` move between items, `Enter` sends the recommended reply of the selected item, the right and left arrows expand and collapse, `R` snoozes until tomorrow, `C` opens the bot's chat, and `?` shows the shortcuts.
+```sh
+orca plugin install ablause/orca-bot-inbox
+```
 
-The pull requests the bot linked to an item show on its row, the one that most needs a look first (`PR checks failing`, `checks running`, `checks passed`, `draft`, `merged`), with the state Orca last checked; unfolded, each opens on GitHub, where it is merged.
+Orca shows what the plugin may do and asks you to approve it. The panel appears as **Bot Inbox** in the right sidebar.
 
-The plugin never changes or closes an item, and makes no network call: the only thing it sends is your answer, as a message in the item's chat. It stores its own snoozes and the answers it sent, by item number, dropping those that no longer apply, and which items you have seen.
+## What it is allowed to do
 
-## How it reads
+The plugin runs its own code on your machine, as you, which Orca marks as **Full access**: its worker is a Node process so it can run the `orca` CLI and read the bots' mascots from disk. Here is what that code does with it.
 
-No host API lists bot items, so the worker runs the local `orca` CLI: `orca bot list --json`, then `orca bot item list --bot <name> --json` for each bot, following its cursor. Closed and canceled items are left out. Only the fields an item already shows reach the panel (title, question, waits-on note, status, number, creation date, snooze date) and its pull request links with the state Orca cached for them; descriptions and other links stay out until an item is unfolded, when `orca bot item show` reads it. An answer goes through `orca orchestration send` to the bot that owns the item, after the item is read again so an answer never lands on a question already settled. Each bot's mascot is read from disk too: its id from the bot's `bot.json` under `~/.orca/bots`, the drawing from the Orca app's own assets, handed to the panel as a data URL. A bot whose mascot cannot be found gets its initials.
+- **Your bots.** No plugin API lists bot items, so the worker runs `orca bot list` and `orca bot item list` for each bot, and `orca bot item show` when you unfold an item. Closed and canceled items are left out.
+- **Your answers.** The only thing it ever sends is the answer you press **Send answer** (or the recommended reply) for, through `orca orchestration send` to the bot that owns the item, as a message in the item's chat. The item is read again first, so an answer never lands on a question already settled or answered.
+- **Orca.** `workspace:write` is used only to show a bot's workspace when you press **Open chat**; `agent:read` to read the bots again when an agent's status settles; `notifications:show` for what newly needs you; `settings:own` for the language.
+- **Storage.** It keeps your snoozes, the answers it sent and which items you have seen in its own storage (`storage:own`), by item number.
 
-## Access
-
-`trusted-worker` with `workspace:write`, used only for `workspace.open` to show a bot's workspace; `agent:read` to read the bots again when an agent's status settles; `storage:own` for the snoozes, the answers sent and what you have seen; `notifications:show` for what newly needs you. The worker is a Node process so it can run the `orca` CLI and read the mascots. The panel is an `html` panel because a components panel draws only the plugin's own files as images, never the bots' mascots.
+It never changes, closes or reassigns an item, makes no network call and keeps no analytics.
 
 ## Limits
 
+- Tested on macOS. The mascots are read from the Orca app's own assets; a bot whose mascot cannot be found gets its initials.
+- The bots are read every 45 seconds and once an agent's status settles, so a change made elsewhere can take that long to show.
+- An answer is a message in the item's chat, not a click on the bot's own reply buttons: the bot reads it as it reads anything you write there.
 - A bot with more than 500 open items is cut at 500, and the panel says so.
+- Orca manifests cannot be localised, so the panel's title and command stay in English.
 
 ## Develop
 
-From the repository root:
-
 ```sh
 npm install
-scripts/orca-types.sh bot-inbox
-npm run typecheck
-orca plugin test ./bot-inbox
-orca plugin dev watch ./bot-inbox
+scripts/orca-types.sh .
+npm run check
+npm test
+orca plugin dev watch .
 ```
+
+`npm install` writes no symlinks (see `.npmrc`): Orca refuses a plugin folder that holds one, and `orca plugin dev watch .` loads this folder as it is.
+
+## License
+
+[MIT](LICENSE). The bundled Preact, htm and Lucide icons keep their own licenses, in `src/vendor`.

@@ -74,10 +74,10 @@ main { padding: 10px 8px 16px; display: flex; flex-direction: column; gap: 12px;
 .rows { list-style: none; margin: 2px 0 0; padding: 0; display: flex; flex-direction: column; gap: 1px; }
 
 /* a row: mascot tile, then number, title and ask, then age and deadline */
-.item { display: grid; grid-template-columns: 28px minmax(0, 1fr) 62px; gap: 10px; width: 100%; padding: 8px 6px; border: 0; border-radius: 7px; background: transparent; text-align: left; cursor: pointer; }
+.item { display: grid; grid-template-columns: 28px minmax(0, 1fr) minmax(62px, max-content); gap: 10px; width: 100%; padding: 8px 6px; border: 0; border-radius: 7px; background: transparent; text-align: left; cursor: pointer; }
 .item:hover { background: var(--hover); }
 .item.copied { background: color-mix(in srgb, var(--success) 14%, transparent); }
-.item .text, .item .title:not(.clamp2), .item .ask:not(.clamp1) { display: block; }
+.item .text, .item .title:not(.clamp1), .item .ask:not(.clamp1) { display: block; }
 .item .title { margin: 0; font-size: 12.5px; font-weight: 500; line-height: 1.35; }
 .item .number { color: var(--muted-fg); font-weight: 400; margin-right: 5px; }
 .item .ask { margin: 2px 0 0; font-size: 11.5px; color: var(--muted-fg); line-height: 1.4; }
