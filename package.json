@@ -1,0 +1,17 @@
+{
+  "name": "orca-bot-inbox",
+  "private": true,
+  "scripts": {
+    "typecheck": "node node_modules/typescript/bin/tsc -p .",
+    "test": "orca plugin test .",
+    "format": "node node_modules/prettier/bin/prettier.cjs --write src README.md",
+    "check": "node node_modules/prettier/bin/prettier.cjs --check src README.md && node node_modules/typescript/bin/tsc -p ."
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.7",
+    "htm": "^3.1.1",
+    "preact": "^10.29.8",
+    "prettier": "^3.10.1",
+    "typescript": "^5.9.3"
+  }
+}
