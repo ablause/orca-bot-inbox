@@ -1,0 +1,78 @@
+{
+  "manifestVersion": 2,
+  "id": "bot-items",
+  "name": "Bot Items",
+  "version": "0.1.0",
+  "description": "Every open item of every Orca bot on this computer in one sidebar panel, what needs you first.",
+  "author": {
+    "name": "ablause",
+    "url": "https://github.com/ablause"
+  },
+  "repository": "https://github.com/ablause/orca-plugins",
+  "license": "MIT",
+  "engines": {
+    "orca": ">=1.4.248"
+  },
+  "execution": "trusted-worker",
+  "pluginApi": 1,
+  "main": "src/worker.ts",
+  "contributes": {
+    "panels": [
+      {
+        "id": "bot-items",
+        "title": "Bot items",
+        "icon": "bot",
+        "entry": "src/web/main.ts",
+        "ui": "html"
+      }
+    ],
+    "commands": [
+      {
+        "id": "bot-items.open",
+        "title": "Bot items: open"
+      }
+    ],
+    "statusBarItems": [
+      {
+        "id": "needs-you",
+        "text": "Bots …",
+        "icon": "bot",
+        "tooltip": "Bot items",
+        "command": "bot-items.open"
+      }
+    ],
+    "events": [
+      {
+        "on": "agent.status.changed"
+      }
+    ],
+    "settings": [
+      {
+        "key": "language",
+        "title": "Language",
+        "description": "Language of the panel, the notifications and the answers sent to bots. Auto follows the system language.",
+        "type": "string",
+        "default": "auto",
+        "enum": ["auto", "en", "fr"],
+        "enumLabels": ["Auto (system language)", "English", "Français"]
+      }
+    ]
+  },
+  "capabilities": [
+    {
+      "kind": "workspace:write"
+    },
+    {
+      "kind": "agent:read"
+    },
+    {
+      "kind": "storage:own"
+    },
+    {
+      "kind": "notifications:show"
+    },
+    {
+      "kind": "settings:own"
+    }
+  ]
+}
