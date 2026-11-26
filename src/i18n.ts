@@ -100,7 +100,7 @@ const en = {
   cutAt: (count: number) => `cut off at ${count} items`,
   answerBody: (number: number, title: string, answers: readonly { question: string; reply: string }[]) =>
     [
-      `Answer from your owner to item ${number} "${title}", sent from the Bot items panel.`,
+      `Answer from your owner to item ${number} "${title}", sent from the Bot Inbox panel.`,
       '',
       ...answers.map((answer) =>
         answers.length > 1
@@ -118,9 +118,9 @@ const en = {
   readingYourAnswer: (bot: string, time: string) => `${bot} to read your answer, sent at ${time}`,
   unreadable: (bots: readonly string[]) =>
     bots.length === 1 ? `${bots[0]} unreadable` : `${bots.length} bots unreadable`,
-  tooltipNothing: (missing: string) => `Bot items: nothing needs you${missing}`,
-  tooltipWaiting: (cards: string, bots: string, missing: string) => `Bot items: ${cards}${bots}${missing}`,
-  tooltipFailed: (reason: string) => `Bot items: could not read the bots (${reason})`,
+  tooltipNothing: (missing: string) => `Bot Inbox: nothing needs you${missing}`,
+  tooltipWaiting: (cards: string, bots: string, missing: string) => `Bot Inbox: ${cards}${bots}${missing}`,
+  tooltipFailed: (reason: string) => `Bot Inbox: could not read the bots (${reason})`,
   notifyOne: (bot: string) => `${bot} needs you`,
   notifyMany: (count: number) => `${count} new items need you`,
 
@@ -135,7 +135,7 @@ const en = {
   edited: 'Edited',
 
   panel: {
-    title: 'Bot items',
+    title: 'Bot Inbox',
     filterByBot: 'Filter by bot',
     all: 'All',
     botTitle: (bot: string, needsYou: number, open: number) =>
@@ -285,7 +285,7 @@ const fr: Strings = {
   cutAt: (count) => `coupé à ${count} cartes`,
   answerBody: (number, title, answers) =>
     [
-      `Réponse de ton propriétaire à la carte ${number} « ${title} », envoyée depuis le panneau Suivi des bots.`,
+      `Réponse de ton propriétaire à la carte ${number} « ${title} », envoyée depuis le panneau Bot Inbox.`,
       '',
       ...answers.map((answer) =>
         answers.length > 1
@@ -302,9 +302,9 @@ const fr: Strings = {
   chatGone: "Ce chat n'est plus ouvert dans Orca",
   readingYourAnswer: (bot, time) => `que ${bot} lise ta réponse, envoyée à ${time}`,
   unreadable: (bots) => (bots.length === 1 ? `${bots[0]} illisible` : `${bots.length} bots illisibles`),
-  tooltipNothing: (missing) => `Suivi des bots : rien ne t'attend${missing}`,
-  tooltipWaiting: (cards, bots, missing) => `Suivi des bots : ${cards}${bots}${missing}`,
-  tooltipFailed: (reason) => `Suivi des bots : lecture impossible (${reason})`,
+  tooltipNothing: (missing) => `Bot Inbox : rien ne t'attend${missing}`,
+  tooltipWaiting: (cards, bots, missing) => `Bot Inbox : ${cards}${bots}${missing}`,
+  tooltipFailed: (reason) => `Bot Inbox : lecture impossible (${reason})`,
   notifyOne: (bot) => `${bot} a besoin de toi`,
   notifyMany: (count) => `${count} nouvelles cartes t'attendent`,
 
@@ -316,7 +316,7 @@ const fr: Strings = {
   edited: 'Modifiée',
 
   panel: {
-    title: 'Suivi des bots',
+    title: 'Bot Inbox',
     filterByBot: 'Filtrer par bot',
     all: 'Tous',
     botTitle: (bot, needsYou, open) => `${bot} : ${needsYou ? `${needsYou} t'attendent, ` : ''}${open} ouvertes`,

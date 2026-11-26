@@ -86,7 +86,7 @@ test('the first read notifies nothing; later, one arrival names its bot and seve
   assert.deepEqual(attentionLine([a, b]), {
     text: 'Bots 2',
     tone: 'warning',
-    tooltip: "Suivi des bots : 2 cartes t'attendent chez 2 bots"
+    tooltip: "Bot Inbox : 2 cartes t'attendent chez 2 bots"
   })
   assert.equal(attentionLine([]).tone, 'neutral')
 })
@@ -108,7 +108,7 @@ test('an unreadable bot keeps its items known, so its answer is no flood, and th
   assert.deepEqual(attentionLine([a], ['Broken']), {
     text: 'Bots 1+',
     tone: 'warning',
-    tooltip: "Suivi des bots : 1 carte t'attend\nBroken illisible"
+    tooltip: "Bot Inbox : 1 carte t'attend\nBroken illisible"
   })
 })
 
@@ -139,7 +139,7 @@ test('an answer goes to the chat that owns the item, only while the item still w
     'orchestration',
     'send',
     '--from',
-    'plugin:bot-items',
+    'plugin:bot-inbox',
     '--to',
     'bot:Security Officer',
     '--type',
@@ -214,7 +214,7 @@ test('on an English machine the bot gets its answer in English, and the status b
     assert.equal(
       answerBody(62, 'Sentry token', [{ question: 'Rotate them?', reply: 'Yes' }]),
       [
-        'Answer from your owner to item 62 "Sentry token", sent from the Bot items panel.',
+        'Answer from your owner to item 62 "Sentry token", sent from the Bot Inbox panel.',
         '',
         'Question: Rotate them?\nAnswer: Yes',
         '',
@@ -249,11 +249,11 @@ test('on an English machine the bot gets its answer in English, and the status b
     assert.deepEqual(attentionLine([a, b], ['Broken']), {
       text: 'Bots 2+',
       tone: 'warning',
-      tooltip: 'Bot items: 2 items need you across 2 bots\nBroken unreadable'
+      tooltip: 'Bot Inbox: 2 items need you across 2 bots\nBroken unreadable'
     })
-    assert.equal(attentionLine([a]).tooltip, 'Bot items: 1 item needs you')
-    assert.equal(attentionLine([]).tooltip, 'Bot items: nothing needs you')
-    assert.equal(failedLine('timeout').tooltip, 'Bot items: could not read the bots (timeout)')
+    assert.equal(attentionLine([a]).tooltip, 'Bot Inbox: 1 item needs you')
+    assert.equal(attentionLine([]).tooltip, 'Bot Inbox: nothing needs you')
+    assert.equal(failedLine('timeout').tooltip, 'Bot Inbox: could not read the bots (timeout)')
     assert.deepEqual(notificationOf([a]), { title: 'Cofounder needs you', body: '1 Pick' })
     assert.equal(notificationOf([a, b])?.title, '2 new items need you')
   })

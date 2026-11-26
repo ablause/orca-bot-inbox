@@ -1,12 +1,12 @@
-# Bot Items for Orca
+# Bot Inbox for Orca
 
 Every open item of every Orca bot on this computer in one sidebar panel, so what waits on you is in one place instead of in each bot's chat.
 
-The panel speaks English or French, as the **Language** setting says (Settings, Plugins, Bot items): **Auto**, the default, follows the system language, and **English** or **Français** picks one whatever the system says: its labels, dates, deadlines, notifications, status bar tooltip and the message sent to a bot all follow. The manifest's own names (the panel title **Bot items**, the command **Bot items: open**) stay in English, since Orca manifests cannot be localised.
+The panel speaks English or French, as the **Language** setting says (Settings, Plugins, Bot Inbox): **Auto**, the default, follows the system language, and **English** or **Français** picks one whatever the system says: its labels, dates, deadlines, notifications, status bar tooltip and the message sent to a bot all follow. The manifest's own names (the panel title **Bot Inbox**, the command **Bot Inbox: open**) stay in English, since Orca manifests cannot be localised.
 
 ## The panel
 
-**Bot items** reads like Linear's inbox, with the bots drawn as Orca's Bots list draws them. It opens on how many items need you, at how many bots, and how long the oldest has waited, with the count of items you have not opened yet. Under it, a strip of the bots' mascot tiles, each with an amber count of what needs you, filters the list by bot. Then come the items grouped by status, each group behind a status ring and its count: **Needs you** and **In progress** open, **Waiting** and **Planned** folded. A group shows six rows (ten for **Needs you**), then **Show N more**.
+**Bot Inbox** reads like Linear's inbox, with the bots drawn as Orca's Bots list draws them. It opens on how many items need you, at how many bots, and how long the oldest has waited, with the count of items you have not opened yet. Under it, a strip of the bots' mascot tiles, each with an amber count of what needs you, filters the list by bot. Then come the items grouped by status, each group behind a status ring and its count: **Needs you** and **In progress** open, **Waiting** and **Planned** folded. A group shows six rows (ten for **Needs you**), then **Show N more**.
 
 Within a group, an item with a deadline comes first, the nearest first, then the oldest. A deadline is a date still to come (`27/11`, `2026-12-01`, `1er décembre`, `Dec 1`, `December 1st`), a date that a word such as `before`, `by`, `due`, `no later than`, `until`, `avant`, `au plus tard`, `d'ici` or `pour` announces, or a relative word (`tomorrow`, `Friday`, `demain`, `vendredi`) on an item raised in the last two days. Bots write in either language, so both are read whatever the panel speaks; a numeric date is always day first (`12/01` is the 12th of January). A past date on its own is an event ("the outage of Nov 20") and is not one. The row shows what it found in a chip (`Dec 1`, `Friday`), coloured only when an announced deadline is past (`Overdue since Nov 20`).
 
@@ -42,8 +42,8 @@ From the repository root:
 
 ```sh
 npm install
-scripts/orca-types.sh bot-items
+scripts/orca-types.sh bot-inbox
 npm run typecheck
-orca plugin test ./bot-items
-orca plugin dev watch ./bot-items
+orca plugin test ./bot-inbox
+orca plugin dev watch ./bot-inbox
 ```

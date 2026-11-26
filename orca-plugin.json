@@ -1,14 +1,14 @@
 {
   "manifestVersion": 2,
-  "id": "bot-items",
-  "name": "Bot Items",
+  "id": "bot-inbox",
+  "name": "Bot Inbox",
   "version": "0.1.0",
   "description": "Every open item of every Orca bot on this computer in one sidebar panel, what needs you first.",
   "author": {
     "name": "ablause",
     "url": "https://github.com/ablause"
   },
-  "repository": "https://github.com/ablause/orca-plugins",
+  "repository": "https://github.com/ablause/orca-bot-inbox",
   "license": "MIT",
   "engines": {
     "orca": ">=1.4.248"
@@ -19,8 +19,8 @@
   "contributes": {
     "panels": [
       {
-        "id": "bot-items",
-        "title": "Bot items",
+        "id": "bot-inbox",
+        "title": "Bot Inbox",
         "icon": "bot",
         "entry": "src/web/main.ts",
         "ui": "html"
@@ -28,8 +28,8 @@
     ],
     "commands": [
       {
-        "id": "bot-items.open",
-        "title": "Bot items: open"
+        "id": "bot-inbox.open",
+        "title": "Bot Inbox: open"
       }
     ],
     "statusBarItems": [
@@ -37,8 +37,8 @@
         "id": "needs-you",
         "text": "Bots …",
         "icon": "bot",
-        "tooltip": "Bot items",
-        "command": "bot-items.open"
+        "tooltip": "Bot Inbox",
+        "command": "bot-inbox.open"
       }
     ],
     "events": [

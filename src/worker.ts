@@ -115,7 +115,7 @@ export async function answerItem(
     'orchestration',
     'send',
     '--from',
-    'plugin:bot-items',
+    'plugin:bot-inbox',
     '--to',
     `bot:${bot}`,
     '--type',
@@ -251,8 +251,8 @@ const fingerprint = (board: Board) => JSON.stringify([board.items, board.failure
 /** Shows this plugin's panel: no host method does, so the CLI opens it by the key Orca gave the plugin. */
 async function openPanel(runner: Runner): Promise<void> {
   const { plugins } = await cli<{ plugins?: { pluginKey?: unknown }[] }>(runner, ['plugin', 'list'])
-  const key = plugins?.map((plugin) => plugin.pluginKey).find((k) => typeof k === 'string' && k.endsWith('.bot-items'))
-  if (typeof key === 'string') await runner(['plugin', 'open', key, '--panel', 'bot-items', '--json'])
+  const key = plugins?.map((plugin) => plugin.pluginKey).find((k) => typeof k === 'string' && k.endsWith('.bot-inbox'))
+  if (typeof key === 'string') await runner(['plugin', 'open', key, '--panel', 'bot-inbox', '--json'])
 }
 
 const POLL_MS = 45_000
@@ -337,7 +337,7 @@ export default function activate(orca: OrcaWorkerApi): void {
     settle = setTimeout(() => void read().catch(log), SETTLE_MS)
   })
 
-  orca.commands.register('bot-items.open', () => openPanel(orcaCli))
+  orca.commands.register('bot-inbox.open', () => openPanel(orcaCli))
   orca.panels.handle('board.load', () => (latest && Date.now() - latest.loadedAt < FRESH_MS ? latest : read()))
   orca.panels.handle('item.answer', async ({ number, answers }) => {
     const sent = await answered()
